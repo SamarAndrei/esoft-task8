@@ -30,7 +30,7 @@ class UserController {
     createUser = async (req, res) => {
         try {
             const newUser = await this.userService.createUser(req.body);
-            res.status(201).json(newUser);
+            res.status(200).json(newUser);
         } catch (error) {
             res.status(400).send(error.message);
         }
@@ -47,7 +47,7 @@ class UserController {
                 res.status(404).send('Пользователь не найден');
             }
         } catch (error) {
-            res.status(400).send(error.message);
+            res.status(500).send(error.message);
         }
     }
     
@@ -57,7 +57,7 @@ class UserController {
             const deleted = await this.userService.deleteUser(userId);
     
             if (deleted) {
-                res.status(204).send();
+                res.status(200).send();
             } else {
                 res.status(404).send('Пользователь не найден');
             }
